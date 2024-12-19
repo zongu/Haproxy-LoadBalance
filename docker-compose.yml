@@ -1,0 +1,36 @@
+version: '3'
+services:
+  api1:
+    container_name: api1
+    image: api:CustomVersion
+    command: "PORT=9001 NO=1"
+    networks: 
+      - haproxy
+  api2:
+    container_name: api2
+    image: api:CustomVersion
+    command: "PORT=9001 NO=2"
+    networks: 
+      - haproxy
+  api3:
+    container_name: api3
+    image: api:CustomVersion
+    command: "PORT=9002 NO=3"
+    networks: 
+      - haproxy
+  api4:
+    container_name: api4
+    image: api:CustomVersion
+    command: "PORT=9002 NO=4"
+    networks: 
+      - haproxy
+  haproxy:
+    container_name: haproxy
+    image: haproxy:CustomVersion
+    ports:
+      - "9001:9001"
+      - "9002:9002"
+    networks: 
+      - haproxy
+networks:
+  haproxy:
